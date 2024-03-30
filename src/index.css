@@ -1,0 +1,18 @@
+.my-facebook-button-class {
+  width: 100%;
+  height: 44px;
+  border: none;
+  padding: 0;
+  background: rgb(60, 90, 160);
+  font-weight: 700;
+  font-size: 17px;
+  border-radius: 6px;
+  color: rgb(255, 255, 255);
+  position: relative;
+}
+.my-facebook-button-class > i {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
