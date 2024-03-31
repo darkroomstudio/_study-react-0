@@ -55,5 +55,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "engines": {
+    "node": ">=18.17.0",
+    "pnpm": "8.15.4"
+  },
+  "packageManager": "pnpm@8.15.4"
 }
