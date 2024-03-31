@@ -1,11 +1,14 @@
-import React from 'react';
-import styled from '@emotion/styled';
-import FacebookLogin from '@greatsumini/react-facebook-login';
-import { useRecoilState } from 'recoil';
-import { loginModalOpenState, signupModalOpenState } from './atom';
+import React from 'react'
+import styled from '@emotion/styled'
+import FacebookLogin from '@greatsumini/react-facebook-login'
+import { useRecoilState } from 'recoil'
+import { loginModalOpenState, signupModalOpenState } from './atom'
 
-import Modal from '../../components/Modal';
-import {LoginResponse, ProfileSuccessResponse} from "@greatsumini/react-facebook-login/dist/types/response.type";
+import Modal from '../../components/Modal'
+import {
+  LoginResponse,
+  ProfileSuccessResponse,
+} from '@greatsumini/react-facebook-login/dist/types/response.type'
 
 const Container = styled.div`
   width: 375px;
@@ -15,26 +18,26 @@ const Container = styled.div`
   background-color: #fff;
   display: flex;
   justify-content: center;
-`;
+`
 
 const ContentWrapper = styled.div`
   padding: 32px 20px 48px;
   width: 100%;
   display: flex;
   flex-direction: column;
-`;
+`
 
 const LogoWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-`;
+`
 
-const Logo = styled.img``;
+const Logo = styled.img``
 
 const TitleWrapper = styled.div`
   margin: 24px 0 20px;
-`;
+`
 
 const Title = styled.h4`
   font-size: 17px;
@@ -42,16 +45,16 @@ const Title = styled.h4`
   text-align: center;
   margin: 0;
   padding: 0;
-`;
+`
 
-const Section = styled.section``;
+const Section = styled.section``
 
-const Form = styled.form``;
+const Form = styled.form``
 
 const InputWrapper = styled.div`
   padding: 4px 0;
   overflow: hidden;
-`;
+`
 
 const InputLabel = styled.label`
   display: flex;
@@ -62,7 +65,7 @@ const InputLabel = styled.label`
   height: 44px;
   padding: 0 12px;
   border-radius: 6px;
-`;
+`
 
 const Input = styled.input`
   background: transparent;
@@ -74,7 +77,7 @@ const Input = styled.input`
   overflow: hidden;
   text-overflow: ellipsis;
   caret-color: rgb(255, 47, 110);
-`;
+`
 
 const SubmitButton = styled.button`
   padding: 0;
@@ -89,14 +92,14 @@ const SubmitButton = styled.button`
   height: 44px;
   border-radius: 6px;
   margin-top: 16px;
-`;
+`
 
 const FindPasswordWrapper = styled.div`
   font-size: 15px;
   font-weight: 400;
   text-align: center;
   margin: 20px 0 14px;
-`;
+`
 
 const FindPassword = styled.button`
   background: none;
@@ -106,14 +109,14 @@ const FindPassword = styled.button`
   cursor: pointer;
   color: rgb(255, 47, 110);
   font-size: inherit;
-`;
+`
 
 const FindAccountWrapper = styled.div`
   font-size: 15px;
   font-weight: 400;
   text-align: center;
   color: rgb(140, 140, 140);
-`;
+`
 
 const FindAccount = styled.button`
   background: none;
@@ -123,7 +126,7 @@ const FindAccount = styled.button`
   cursor: pointer;
   color: rgb(255, 47, 110);
   font-size: inherit;
-`;
+`
 
 const Divider = styled.hr`
   position: relative;
@@ -134,7 +137,7 @@ const Divider = styled.hr`
   outline: 0;
   margin: 24px 0;
   &:before {
-    content: "";
+    content: '';
     position: absolute;
     top: 50%;
     left: 0;
@@ -142,7 +145,7 @@ const Divider = styled.hr`
     border-top: 1px solid rgb(216, 216, 216);
   }
   &:after {
-    content: "OR";
+    content: 'OR';
     display: inline-block;
     position: relative;
     top: -2px;
@@ -155,81 +158,84 @@ const Divider = styled.hr`
     vertical-align: middle;
     padding: 5px 14px;
   }
-`;
+`
 
 const FacebookLoginWrapper = styled.div`
   width: 100%;
-`;
+`
 
 interface Props {}
 
 const LoginModal: React.FC<Props> = () => {
-  const [isLoginModalOpen, setIsLoginModalOpen] = useRecoilState(loginModalOpenState);
-  const [isSignupModalOpen, setIsSignupModalOpen] = useRecoilState(signupModalOpenState);
+  const [isLoginModalOpen, setIsLoginModalOpen] =
+    useRecoilState(loginModalOpenState)
+  const [isSignupModalOpen, setIsSignupModalOpen] =
+    useRecoilState(signupModalOpenState)
 
-  const responseFacebook = (userInfo:LoginResponse | ProfileSuccessResponse) => {
-    console.log(userInfo);
+  const responseFacebook = (
+    userInfo: LoginResponse | ProfileSuccessResponse
+  ) => {
+    console.log(userInfo)
   }
 
-  const handleClose =  (): void => {
-    setIsLoginModalOpen(false);
+  const handleClose = (): void => {
+    setIsLoginModalOpen(false)
   }
 
   const handleSignup = (): void => {
-    handleClose();
-    !isSignupModalOpen && setIsSignupModalOpen(true);
+    handleClose()
+    !isSignupModalOpen && setIsSignupModalOpen(true)
   }
 
   return (
-      <Modal isOpen={isLoginModalOpen} onClose={handleClose}>
-        <Container>
-          <ContentWrapper>
-            <LogoWrapper>
-              <Logo src="/logo.png" />
-            </LogoWrapper>
-            <TitleWrapper>
-              <Title>로그인</Title>
-            </TitleWrapper>
-            <Section>
-              <Form>
-                <InputWrapper>
-                  <InputLabel>
-                    <Input placeholder="이메일" />
-                  </InputLabel>
-                </InputWrapper>
-                <InputWrapper>
-                  <InputLabel>
-                    <Input placeholder="비밀번호" />
-                  </InputLabel>
-                </InputWrapper>
-                <SubmitButton>
-                  로그인
-                </SubmitButton>
-              </Form>
-              <FindPasswordWrapper>
-                <FindPassword>비밀번호를 잊어버리셨나요?</FindPassword>
-              </FindPasswordWrapper>
-              <FindAccountWrapper>
-                계정이 없으신가요 ? <FindAccount onClick={handleSignup}>회원가입</FindAccount>
-              </FindAccountWrapper>
-              <Divider />
-              <FacebookLoginWrapper>
-                <FacebookLogin
-                    appId=""
-                    fields="name,email,picture"
-                    language="ko_KR"
-                    children="Facebook으로 로그인"
-                    onSuccess={()=>responseFacebook}
-                    onFail={console.error}
-                    onProfileSuccess={responseFacebook}
-                    className="my-facebook-button-class"
-                />
-              </FacebookLoginWrapper>
-            </Section>
-          </ContentWrapper>
-        </Container>
-      </Modal>
+    <Modal isOpen={isLoginModalOpen} onClose={handleClose}>
+      <Container>
+        <ContentWrapper>
+          <LogoWrapper>
+            <Logo src="/logo.png" />
+          </LogoWrapper>
+          <TitleWrapper>
+            <Title>로그인</Title>
+          </TitleWrapper>
+          <Section>
+            <Form>
+              <InputWrapper>
+                <InputLabel>
+                  <Input placeholder="이메일" />
+                </InputLabel>
+              </InputWrapper>
+              <InputWrapper>
+                <InputLabel>
+                  <Input placeholder="비밀번호" />
+                </InputLabel>
+              </InputWrapper>
+              <SubmitButton>로그인</SubmitButton>
+            </Form>
+            <FindPasswordWrapper>
+              <FindPassword>비밀번호를 잊어버리셨나요?</FindPassword>
+            </FindPasswordWrapper>
+            <FindAccountWrapper>
+              계정이 없으신가요 ?{' '}
+              <FindAccount onClick={handleSignup}>회원가입</FindAccount>
+            </FindAccountWrapper>
+            <Divider />
+            <FacebookLoginWrapper>
+              <FacebookLogin
+                appId=""
+                fields="name,email,picture"
+                language="ko_KR"
+                children="Facebook으로 로그인"
+                onSuccess={() => responseFacebook}
+                onFail={console.error}
+                onProfileSuccess={responseFacebook}
+                className="my-facebook-button-class"
+              />
+            </FacebookLoginWrapper>
+          </Section>
+        </ContentWrapper>
+      </Container>
+    </Modal>
   )
 }
 
-export default LoginModal;
+export default LoginModal

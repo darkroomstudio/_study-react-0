@@ -4,7 +4,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint-fix": "prettier --write !pnpm-lock.yaml ."
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
@@ -34,6 +35,7 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/react-slick": "^0.23.13",
     "@types/react-transition-group": "^4.4.10",
+    "prettier": "^3.2.5",
     "react-scripts": "^5.0.1",
     "typescript": "^5.4.3",
     "web-vitals": "^3.5.2"
@@ -55,6 +57,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "jsxSingleQuote": false,
+    "trailingComma": "es5"
   },
   "engines": {
     "node": ">=18.17.0",

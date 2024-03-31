@@ -1,12 +1,12 @@
-import React, {ReactNode} from 'react';
-import ReactSlider, { Settings } from 'react-slick';
-import styled from '@emotion/styled';
-import { css } from '@emotion/react';
-import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md';
+import React, { ReactNode } from 'react'
+import ReactSlider, { Settings } from 'react-slick'
+import styled from '@emotion/styled'
+import { css } from '@emotion/react'
+import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md'
 
 interface Props {
-  settings?: Settings;
-  children?: ReactNode | ReactNode[];
+  settings?: Settings
+  children?: ReactNode | ReactNode[]
 }
 
 const ArrowButton = styled.button<{ pos?: 'left' | 'right' }>`
@@ -16,7 +16,16 @@ const ArrowButton = styled.button<{ pos?: 'left' | 'right' }>`
   z-index: 1;
   top: 50%;
   background-color: #fff;
-  ${({ pos }) => pos === 'left' ? css`left: 0; transform: translate(-50%, -50%)` : css`right: 0; transform: translate(50%, -50%)`};
+  ${({ pos }) =>
+    pos === 'left'
+      ? css`
+          left: 0;
+          transform: translate(-50%, -50%);
+        `
+      : css`
+          right: 0;
+          transform: translate(50%, -50%);
+        `};
   &:before {
     content: initial;
   }
@@ -29,7 +38,7 @@ const ArrowButton = styled.button<{ pos?: 'left' | 'right' }>`
     height: 10px;
     color: #222;
   }
-`;
+`
 
 const DEFAULT_SETTINGS: Settings = {
   dots: false,
@@ -41,21 +50,19 @@ const DEFAULT_SETTINGS: Settings = {
   swipe: true,
   draggable: true,
   prevArrow: (
-      <ArrowButton pos="left">
-        <MdArrowBackIos />
-      </ArrowButton>
+    <ArrowButton pos="left">
+      <MdArrowBackIos />
+    </ArrowButton>
   ),
   nextArrow: (
-      <ArrowButton pos="right">
-        <MdArrowForwardIos />
-      </ArrowButton>
-  )
-};
+    <ArrowButton pos="right">
+      <MdArrowForwardIos />
+    </ArrowButton>
+  ),
+}
 
 const Slider: React.FC<Props> = ({ settings = DEFAULT_SETTINGS, children }) => (
-    <ReactSlider {...settings}>
-      {children}
-    </ReactSlider>
+  <ReactSlider {...settings}>{children}</ReactSlider>
 )
 
-export default Slider;
+export default Slider
