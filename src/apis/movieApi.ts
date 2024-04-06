@@ -26,7 +26,7 @@ export const searchApi = (query: string) =>
  * */
 export const delayExecution = (fn: any, delay = 1000) => {
   return async () => {
-    await new Promise(resolve => setTimeout(resolve, delay));
-    return fn();
-  };
+    await new Promise((resolve) => setTimeout(resolve, delay))
+    return fn()
+  }
 }

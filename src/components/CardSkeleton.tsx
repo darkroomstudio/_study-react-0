@@ -13,7 +13,7 @@ interface Props {
 
 const pulseKeyframe = keyframes`
   100% {
-   background-position: -100% 0;
+    background-position: -100% 0;
   }
 `
 
@@ -22,10 +22,16 @@ const pulseAnimation = css`
 `
 
 const sharedStyle = css`
-  background-image: linear-gradient(120deg, #e4e4e4 30%, #f1f1f1 38%, #f1f1f1 40%, #e4e4e4 48%);
+  background-image: linear-gradient(
+    120deg,
+    #e4e4e4 30%,
+    #f1f1f1 38%,
+    #f1f1f1 40%,
+    #e4e4e4 48%
+  );
   background-size: 200% 100%;
   background-position: 100% 0;
-`;
+`
 
 const CardWrapper = styled.div`
   display: flex;
@@ -76,21 +82,21 @@ export default function CardSkeleton({
   style,
 }: Props) {
   return (
-      <CardWrapper>
-        {Array.from({ length: count }, (_, index) => (
-            <Base key={index}>
-              <ImgCard
-                  rounded={rounded}
-                  height={height}
-                  unit={unit}
-                  animation={animation}
-                  style={style}
-              />
-              <Title animation={animation} />
-              <Year animation={animation} />
-              <Average animation={animation} />
-            </Base>
-        ))}
-      </CardWrapper>
+    <CardWrapper>
+      {Array.from({ length: count }, (_, index) => (
+        <Base key={index}>
+          <ImgCard
+            rounded={rounded}
+            height={height}
+            unit={unit}
+            animation={animation}
+            style={style}
+          />
+          <Title animation={animation} />
+          <Year animation={animation} />
+          <Average animation={animation} />
+        </Base>
+      ))}
+    </CardWrapper>
   )
 }

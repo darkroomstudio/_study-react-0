@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 import Slider from '../../../components/Slider'
 import useTopRateMovie from './useTopRateMovie'
 import Card from '../../../components/Card'
-import CardSkeleton from "../../../components/CardSkeleton";
+import CardSkeleton from '../../../components/CardSkeleton'
 
 const Base = styled.div`
   margin-bottom: 42px;
@@ -26,7 +26,7 @@ const TopRaterSection: React.FC = () => {
     <Base>
       <Title>최고 평점</Title>
       {isLoading ? (
-          <CardSkeleton count={5} rounded={true} height={300} />
+        <CardSkeleton count={5} rounded={true} height={300} />
       ) : (
         <Slider>
           {topRateMovieResponse?.data?.results.map((movie) => (
