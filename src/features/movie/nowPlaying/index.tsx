@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import Slider from '../../../components/Slider'
 import useNowPlayingMovie from './useNowPlayingMovie'
 import Card from '../../../components/Card'
+import CardSkeleton from "../../../components/CardSkeleton";
 
 const Base = styled.div`
   margin-bottom: 42px;
@@ -24,7 +25,7 @@ const NowPlayingSection: React.FC = () => {
     <Base>
       <Title>현재 상영중</Title>
       {isLoading ? (
-        <div>Loading...</div>
+          <CardSkeleton count={5} rounded={true} height={300} />
       ) : (
         <Slider>
           {nowPlayingMovieResponse?.data?.results.map((movie) => (

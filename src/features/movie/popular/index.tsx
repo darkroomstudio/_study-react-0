@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import Slider from '../../../components/Slider'
 import usePopularMovie from './usePopularMovie'
 import Card from '../../../components/Card'
+import CardSkeleton from "../../../components/CardSkeleton";
 
 const Base = styled.div`
   margin-bottom: 42px;
@@ -25,7 +26,7 @@ const PopularMovieSection: React.FC = () => {
     <Base>
       <Title>인기 상영작</Title>
       {isLoading ? (
-        <div>Loading...</div>
+          <CardSkeleton count={5} rounded={true} height={300} />
       ) : (
         <Slider>
           {popularMovieResponse?.data?.results.map((movie) => (
