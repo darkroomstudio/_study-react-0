@@ -117,7 +117,7 @@ render(Child)
 
 ### 초기 렌더링
 
-[DOM을 수정한다](https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild).
+[DOM에 추가한다](https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild).
 
 ### 리렌더링
 
