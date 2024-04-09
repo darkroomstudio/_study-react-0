@@ -132,3 +132,12 @@ DOM 변경사항이 브라우저에 렌더링 (페인팅)이 된다. 즉, 변경
 1. 렌더링과 리렌더링은 컴포넌트의 state 변경에 의해 일어난다.
 2. 부모의 state가 바뀌면 자식 컴포넌트들도 리렌더링 되지만, 예외는 있다.
 3. 렌더링은 JSX 코드를 브라우저에 반영하는 과정이다.
+
+## 레퍼런스
+
+- [Render and Commit](https://react.dev/learn/render-and-commit)
+- [React Rerender](https://www.zhenghao.io/posts/react-rerender)
+- [React as a UI Runtime](https://overreacted.io/react-as-a-ui-runtime)
+- [Optimize React Rerender](https://kentcdodds.com/blog/optimize-react-re-renders)
+- [Does a component rerender only when its props change](https://www.reddit.com/r/reactjs/comments/wdv4p9/does_a_component_rerender_only_when_its_props/)
+- [What problem does useState in React solve](https://www.reddit.com/r/webdev/comments/yz7im1/what_problem_does_usestate_in_react_solve/)
