@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 import styled from '@emotion/styled'
 import { AiOutlineSearch } from 'react-icons/ai'
 import useClickOutside from '../hooks/useClickOutside'
