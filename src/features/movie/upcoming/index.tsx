@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import Slider from '../../../components/Slider'
 import useUpcomingMovie from './useUpcomingMovie'
 import Card from '../../../components/Card'
+import CardSkeleton from '../../../components/CardSkeleton'
 
 const Base = styled.div`
   margin-bottom: 42px;
@@ -16,7 +17,7 @@ const Title = styled.h4`
   padding: 12px 0 14px;
 `
 
-const UpcomingSection: React.FC = () => {
+export default function UpcomingSection() {
   const { data: upcomingMovieResponse, isLoading } = useUpcomingMovie()
 
   const getYear = (release_date: string) => release_date.split('-')[0] || ''
@@ -25,7 +26,7 @@ const UpcomingSection: React.FC = () => {
     <Base>
       <Title>개봉 예정작</Title>
       {isLoading ? (
-        <div>Loading...</div>
+        <CardSkeleton count={5} rounded={true} height={300} />
       ) : (
         <Slider>
           {upcomingMovieResponse?.data?.results.map((movie) => (
@@ -43,5 +44,3 @@ const UpcomingSection: React.FC = () => {
     </Base>
   )
 }
-
-export default UpcomingSection
