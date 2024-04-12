@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 
 import useLatestMovie from './useLatestMovie'
 import Card from '../../../components/Card'
+import CardSkeleton from '../../../components/CardSkeleton'
 
 const Base = styled.div`
   margin-bottom: 42px;
@@ -23,7 +24,7 @@ const LatestMovieSection: React.FC = () => {
     <Base>
       <Title>최근 개봉작</Title>
       {isLoading ? (
-        <div>Loading...</div>
+        <CardSkeleton count={5} rounded={true} height={300} />
       ) : (
         latestMovieResponse?.data && (
           <Card
