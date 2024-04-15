@@ -1,5 +1,5 @@
-import axios, { InternalAxiosRequestConfig, AxiosResponse } from 'axios'
-
+import axios, { AxiosResponse } from 'axios'
+import type { InternalAxiosRequestConfig } from 'axios'
 const axiosInstance = axios.create({
   baseURL: `${process.env.REACT_APP_API_HOST}/3`,
   params: {
