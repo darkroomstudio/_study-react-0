@@ -1,5 +1,7 @@
 import styled from '@emotion/styled'
 import useClickOutside from '../hooks/useClickOutside'
+import useDebounce from '../hooks/useDebounce'
+import useMovieSearch from '../features/movie/useMovieSearch'
 import { useRef, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { AiOutlineSearch } from 'react-icons/ai'
@@ -156,7 +158,8 @@ export default function Header() {
   const searchRef = useRef<HTMLDivElement>(null)
   const pathname = window.location.pathname
 
-  const [searchKeyword, setSearchKeyword] = useState('')
+  const [debouncedSearchKeyword, searchKeyword, setSearchKeyword] =
+    useDebounce<string>('', 500)
 
   const [isLoginModalOpen, setIsLoginModalOpen] =
     useRecoilState(loginModalOpenState)
@@ -177,8 +180,8 @@ export default function Header() {
 
   useClickOutside(searchRef, () => setSearchKeyword(''))
 
-  // TODO: handle isLoading with loading spinner
-  const { searchResults } = useMovieSearch(searchKeyword)
+  const { data: searchResult } = useMovieSearch(debouncedSearchKeyword)
+
   return (
     <Base>
       <Navigation>
