@@ -1,20 +1,19 @@
 import { useQuery } from 'react-query'
 import { searchApi } from '../../apis/movieApi'
-import { Movie, ListResponse } from '../../types'
-import { AxiosError, AxiosResponse } from 'axios'
+import type { Movie } from '../../types'
 
-const useMovieSearch = (query: string) => {
+export function useMovieSearch(query: string): {
+  isLoading: boolean
+  searchResults: Movie[]
+} {
   const queryFn = () => searchApi(query)
-  const { isLoading, isError, data } = useQuery<
-    AxiosResponse<ListResponse<Movie>>,
-    AxiosError
-  >(['searchMovie', query], queryFn, { enabled: Boolean(query) })
+  const { isLoading, data, error } = useQuery(['searchMovie', query], queryFn, {
+    enabled: Boolean(query),
+  })
 
+  if (error) throw new Error(`Failed to fetch search results: ${error}`)
   return {
     isLoading,
-    isError,
-    data: data?.data,
+    searchResults: data?.data.results ?? [],
   }
 }
-
-export default useMovieSearch

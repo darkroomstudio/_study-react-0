@@ -1,12 +1,10 @@
-import React from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-
 import MoviePage from './Pages/MoviePage'
 import MovieDetail from './Pages/MovieDetail'
 import TvPage from './Pages/TvPage'
 import TvDetail from './Pages/TvDetail'
 import LoginModal from './features/app/LoginModal'
 import SignupModal from './features/app/SignupModal'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
   return (

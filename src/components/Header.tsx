@@ -1,11 +1,10 @@
-import { useRef } from 'react'
 import styled from '@emotion/styled'
-import { AiOutlineSearch } from 'react-icons/ai'
 import useClickOutside from '../hooks/useClickOutside'
-import useDebounce from '../hooks/useDebounce'
-import useMovieSearch from '../features/movie/useMovieSearch'
+import { useRef, useState } from 'react'
 import { useRecoilState } from 'recoil'
+import { AiOutlineSearch } from 'react-icons/ai'
 import { loginModalOpenState, signupModalOpenState } from '../features/app/atom'
+import { useMovieSearch } from '../features/movie/useMovieSearch'
 
 const Base = styled.header`
   position: fixed;
@@ -153,12 +152,11 @@ const SignUp = styled.button`
   margin: 0 15px;
 `
 
-const Header: React.FC = () => {
+export default function Header() {
   const searchRef = useRef<HTMLDivElement>(null)
   const pathname = window.location.pathname
 
-  const [debouncedSearchKeyword, searchKeyword, setSearchKeyword] =
-    useDebounce<string>('', 500)
+  const [searchKeyword, setSearchKeyword] = useState('')
 
   const [isLoginModalOpen, setIsLoginModalOpen] =
     useRecoilState(loginModalOpenState)
@@ -179,13 +177,14 @@ const Header: React.FC = () => {
 
   useClickOutside(searchRef, () => setSearchKeyword(''))
 
-  const { data: searchResult } = useMovieSearch(debouncedSearchKeyword)
-
+  // TODO: handle isLoading with loading spinner
+  const { searchResults } = useMovieSearch(searchKeyword)
   return (
     <Base>
       <Navigation>
         <MenuListWrapper>
           <MenuList>
+            {/* TODO: split as logo header */}
             <Menu>
               <Link href="/">
                 <TextLogo>
@@ -194,6 +193,7 @@ const Header: React.FC = () => {
                 </TextLogo>
               </Link>
             </Menu>
+            {/* TODO: is it possible to not full reload? */}
             <Menu>
               <Link href="/">
                 <MenuButton active={pathname === '/'}>영화</MenuButton>
@@ -204,6 +204,7 @@ const Header: React.FC = () => {
                 <MenuButton active={pathname === '/tv'}>TV 프로그램</MenuButton>
               </Link>
             </Menu>
+            {/* TODO: Split to a separate component */}
             <SearchMenu>
               <SearchContainer ref={searchRef}>
                 <SearchFormWrapper>
@@ -219,14 +220,9 @@ const Header: React.FC = () => {
                 </SearchFormWrapper>
                 <SearchResultWrapper>
                   <SearchResultList>
-                    {searchResult?.results.map((searchResultItem) => (
-                      <Link
-                        href={`/movie/${searchResultItem.id}`}
-                        key={searchResultItem.id}
-                      >
-                        <SearchResultListItem>
-                          {searchResultItem.title}
-                        </SearchResultListItem>
+                    {searchResults.map(({ id, title }) => (
+                      <Link href={`/movie/${id}`} key={id}>
+                        <SearchResultListItem>{title}</SearchResultListItem>
                       </Link>
                     ))}
                   </SearchResultList>
@@ -245,5 +241,3 @@ const Header: React.FC = () => {
     </Base>
   )
 }
-
-export default Header

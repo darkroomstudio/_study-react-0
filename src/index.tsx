@@ -9,6 +9,8 @@ import 'reset-css'
 import './index.css'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import Header from './components/Header'
+import Footer from './components/Footer'
 
 const queryClient = new QueryClient()
 
@@ -17,7 +19,9 @@ root.render(
   <QueryClientProvider client={queryClient}>
     <RecoilRoot>
       <React.StrictMode>
+        <Header />
         <App />
+        <Footer />
       </React.StrictMode>
     </RecoilRoot>
   </QueryClientProvider>
